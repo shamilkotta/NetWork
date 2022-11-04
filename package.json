@@ -1,0 +1,25 @@
+{
+  "name": "network",
+  "version": "1.0.0",
+  "description": "A node express and mongodb app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shamilkotta/NetWork.git"
+  },
+  "keywords": [
+    "express",
+    "nodejs",
+    "mongodb",
+    "hbs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shamilkotta/NetWork/issues"
+  },
+  "homepage": "https://github.com/shamilkotta/NetWork#readme"
+}
