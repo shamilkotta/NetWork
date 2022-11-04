@@ -4,7 +4,8 @@
   "description": "A node express and mongodb app",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --fix . --ext .js",
+    "postlint": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,12 @@
   "bugs": {
     "url": "https://github.com/shamilkotta/NetWork/issues"
   },
-  "homepage": "https://github.com/shamilkotta/NetWork#readme"
+  "homepage": "https://github.com/shamilkotta/NetWork#readme",
+  "devDependencies": {
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "prettier": "^2.7.1"
+  }
 }
