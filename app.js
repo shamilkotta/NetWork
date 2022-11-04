@@ -1,8 +1,11 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const errorHandler = require("./middlewares/errorHandler");
 require("dotenv").config();
+
+const errorHandler = require("./middlewares/errorHandler");
+const indexRouter = require("./routes");
+const adminRouter = require("./routes/admin")
 
 const app = express();
 
@@ -17,9 +20,9 @@ app.use(cookieParser());
 // static
 app.use("/static", express.static(`${__dirname}/public`))
 
-app.get("/", (req, res) => {
-  res.send("Hi welcome");
-});
+// routes
+app.use("/", indexRouter);
+app.use("/admin", adminRouter)
 
 // 404
 app.use((req, res, next) => {
