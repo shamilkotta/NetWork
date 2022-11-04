@@ -1,1 +1,116 @@
-signup
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div
+          class="card shadow-2-strong card-registration"
+          style="border-radius: 15px;"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+            <form method="post" action="/signup">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      class="form-control form-control-lg"
+                      required
+                    />
+                    <label class="form-label" for="name">Full Name</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      class="form-control form-control-lg"
+                      required
+                    />
+                    <label class="form-label" for="email">Email</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4 d-flex align-items-center">
+                  <div class="form-outline datepicker w-100">
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="tag"
+                      name="tag"
+                    />
+                    <label for="tag" class="form-label">Tag line</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <input
+                      type="tel"
+                      id="phoneNumber"
+                      class="form-control form-control-lg"
+                    />
+                    <label class="form-label" for="phoneNumber">Phone Number</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 mb-4 pb-2">
+                  <div class="form-outline">
+                    <textarea
+                      class="form-control"
+                      id="bio"
+                      name="bio"
+                      rows="4"
+                    ></textarea>
+                    <label class="form-label" for="bio">Bio</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <input
+                      type="password"
+                      name="password"
+                      id="password"
+                      class="form-control form-control-lg"
+                      required
+                    />
+                    <label class="form-label" for="password">Password</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <input
+                      type="password"
+                      name="confirm-password"
+                      id="confirm-password"
+                      class="form-control form-control-lg"
+                      required
+                    />
+                    <label class="form-label" for="confirm-password">Confirm
+                      Password</label>
+                  </div>
+                </div>
+              </div>
+              <p class="error-message text-danger"></p>
+              <div class="mt-4 pt-2">
+                <input
+                  class="btn btn-primary btn-lg"
+                  type="submit"
+                  value="Submit"
+                />
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
