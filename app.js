@@ -14,6 +14,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// static
+app.use("/static", express.static(`${__dirname}/public`))
+
 app.get("/", (req, res) => {
   res.send("Hi welcome");
 });
