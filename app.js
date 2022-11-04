@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const { engine } = require("express-handlebars");
+const { connectDb } = require("./config/db");
 require("dotenv").config();
 
 const errorHandler = require("./middlewares/errorHandler");
@@ -25,6 +26,15 @@ app.engine("hbs", engine({ extname: ".hbs", defaultLayout: "index" }));
 
 // static
 app.use("/static", express.static(`${__dirname}/public`));
+
+// connect db
+connectDb()
+  .then(() => {
+    console.log(`Database connected`);
+  })
+  .catch((err) => {
+    console.log(`error ${err}`);
+  });
 
 // routes
 app.use("/", indexRouter);
