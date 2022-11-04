@@ -4,6 +4,7 @@
   "description": "A node express and mongodb app",
   "main": "server.js",
   "scripts": {
+    "start": "nodemon server.js",
     "lint": "eslint --fix . --ext .js",
     "postlint": "prettier --write ."
   },
@@ -28,6 +29,10 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.20",
     "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }
