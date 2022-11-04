@@ -33,6 +33,9 @@
     "prettier": "^2.7.1"
   },
   "dependencies": {
-    "express": "^4.18.2"
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
   }
 }
