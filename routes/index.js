@@ -3,13 +3,26 @@ const { validationResult, matchedData } = require("express-validator");
 
 const loginValidation = require("../middlewares/validators/loginValidation");
 const signupValidation = require("../middlewares/validators/signupValidation");
-const { signupHelper, loginHelper } = require("../helpers");
+const { signupHelper, loginHelper, getAllUsers } = require("../helpers");
 
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  if (req.session.logedIn) res.render("home");
-  else res.redirect("/login");
+  if (req.session.logedIn) {
+    getAllUsers()
+      .then((users) => {
+        res.render("home", {
+          users,
+          helpers: {
+            avatar: (name) => name.split("")[0],
+          },
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.render("home", { users: [] });
+      });
+  } else res.redirect("/login");
 });
 
 router.get("/login", (req, res) => {
