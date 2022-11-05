@@ -1,1 +1,31 @@
-profile
+<section class="p-3 p-md-5">
+  <div class="p-lg-3 p-xl-5 d-flex flex-column align-items-center">
+    <div class="card mb-3" style="max-width: 1200px;">
+      <div class="row g-0">
+        <div
+          class="col-md-3 d-flex d-sm-none d-md-flex justify-content-center align-items-center"
+          style="min-height: 100px; background-color:rgb(223, 223, 223);"
+        >
+          <h1 style="font-size: 50px;">
+            {{avatar user.name}}
+          </h1>
+        </div>
+        <div class="col-md-9">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h3 class="card-title">{{user.name}}</h3>
+              <a href="#" class="btn btn-outline-primary">connect</a>
+            </div>
+            <p class="card-text">
+              {{user.bio}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-2 p-3" style="max-width: 1200px">
+      <h3>Gallery</h3>
+      <hr />
+    </div>
+  </div>
+</section>
