@@ -3,7 +3,7 @@ const { validationResult, matchedData } = require("express-validator");
 
 const loginValidation = require("../middlewares/validators/loginValidation");
 const signupValidation = require("../middlewares/validators/signupValidation");
-const { signupHelper } = require("../helpers");
+const { signupHelper, loginHelper } = require("../helpers");
 
 const router = express.Router();
 
@@ -17,15 +17,21 @@ router.get("/login", (req, res) => {
 
 router.post("/login", loginValidation, (req, res) => {
   const err = validationResult(req).array();
-  if (err.length > 0) {
-    res.render("login", { error: err[0].msg });
-  } else {
+  if (err.length > 0) res.render("login", { error: err[0].msg });
+  else {
     const data = matchedData(req, {
       onlyValidData: true,
       includeOptionals: false,
     });
-    console.log(data);
-    res.redirect("/");
+    loginHelper(data)
+      .then((response) => {
+        if (response.success) res.redirect("/");
+        else res.render("login", { error: response.message });
+      })
+      .catch((error) => {
+        console.error(error);
+        res.render("login", { error: "Something went wrong, try again" });
+      });
   }
 });
 
