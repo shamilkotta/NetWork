@@ -2,15 +2,15 @@ const { checkSchema } = require("express-validator");
 
 const lgoinSchema = {
   email: {
+    trim: true,
     notEmpty: true,
     isEmail: true,
-    trim: true,
     normalizeEmail: true,
     errorMessage: "Enter a valid email",
   },
   password: {
-    notEmpty: true,
     trim: true,
+    notEmpty: true,
     isStrongPassword: {
       errorMessage:
         "Password must contain at least one uppercase, one lowercase, one number, and one special character",
