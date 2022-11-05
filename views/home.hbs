@@ -3,32 +3,33 @@
     <h2>Connect </h2>
     <hr class="w-50" />
     <div class="users-data d-flex" style="gap: 15px;">
-      <div
-        class="card text-center d-flex flex-column align-items-center"
-        style="width: 300px;"
-      >
+      {{#each users}}
         <div
-          class="mt-3 rounded-circle d-flex align-items-center justify-content-center bg-secondary"
-          style="width: 200px; height: 200px;"
+          class="card text-center d-flex flex-column align-items-center"
+          style="width: 300px;"
         >
-          <h1 style="font-size: 100px;">S</h1>
-        </div>
-        <div class="card-body w-100">
-          <div class="tag mb-2" style="height: 5rem; overflow-y: hidden;">
-            <p class="card-text" style="line-height: 1.5rem;">With supporting
-              text below as a natural lead-in to additional content.</p>
+          <div
+            class="mt-3 rounded-circle d-flex align-items-center justify-content-center bg-secondary"
+            style="width: 200px; height: 200px;"
+          >
+            <h1 style="font-size: 100px;">{{avatar this.name}}</h1>
           </div>
-          <div class="row">
-            <div class="col-6">
-              <a href="#" class="w-100 btn btn-outline-primary">View</a>
+          <div class="card-body w-100">
+            <h5 class="card-title">{{this.name}}</h5>
+            <div class="tag mb-2" style="height: 5rem; overflow-y: hidden;">
+              <p class="card-text" style="line-height: 1.5rem;">{{this.tag}}</p>
             </div>
-            <div class="col-6">
-              <a href="#" class="w-100 btn btn-primary">Connect</a>
+            <div class="row">
+              <div class="col-6">
+                <a href="#" class="w-100 btn btn-outline-primary">View</a>
+              </div>
+              <div class="col-6">
+                <a href="#" class="w-100 btn btn-primary">Connect</a>
+              </div>
             </div>
           </div>
         </div>
-        <a class="card-footer text-primary" href="#">@name</a>
-      </div>
+      {{/each}}
     </div>
   </div>
 </section>
