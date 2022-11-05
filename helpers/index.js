@@ -89,9 +89,13 @@ module.exports = {
 
   updateInfo: (user, data) =>
     new Promise((resolve, reject) => {
-      getDb.collection(USERS_COLLECTION).findOneAndUpdate({ email: user }, { $set: data }).then((res) => {
-        console.log(res);
-        resolve({ success: true });
-      }).catch(err => reject(err));
-    })
+      getDb
+        .collection(USERS_COLLECTION)
+        .findOneAndUpdate({ email: user }, { $set: data })
+        .then((res) => {
+          console.log(res);
+          resolve({ success: true });
+        })
+        .catch((err) => reject(err));
+    }),
 };

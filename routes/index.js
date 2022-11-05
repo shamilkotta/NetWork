@@ -2,7 +2,12 @@ const express = require("express");
 
 const loginValidation = require("../middlewares/validators/loginValidation");
 const signupValidation = require("../middlewares/validators/signupValidation");
-const { getHome, postLogin, postSignup, postSettings } = require("../controllers");
+const {
+  getHome,
+  postLogin,
+  postSignup,
+  postSettings,
+} = require("../controllers");
 
 const router = express.Router();
 
@@ -37,6 +42,6 @@ router.get("/settings", (req, res) => {
   else res.redirect("/login");
 });
 
-router.post("/settings", signupValidation, postSettings)
+router.post("/settings", signupValidation, postSettings);
 
 module.exports = router;

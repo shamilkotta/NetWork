@@ -1,6 +1,11 @@
 const { validationResult, matchedData } = require("express-validator");
 
-const { getAllUsers, loginHelper, signupHelper, updateInfo } = require("../helpers");
+const {
+  getAllUsers,
+  loginHelper,
+  signupHelper,
+  updateInfo,
+} = require("../helpers");
 
 module.exports = {
   getHome: (req, res) => {
@@ -76,19 +81,27 @@ module.exports = {
 
   postSettings: (req, res) => {
     let err = validationResult(req).array();
-    err = err.filter((ele) => !["email", "password", "confirmPassword"].includes(ele.param));
-    if (err.length > 0) res.render("settings", { user: req.session.user, error: err[0].msg });
+    err = err.filter(
+      (ele) => !["email", "password", "confirmPassword"].includes(ele.param)
+    );
+    if (err.length > 0)
+      res.render("settings", { user: req.session.user, error: err[0].msg });
     else {
       const data = matchedData(req, {
         onlyValidData: true,
         includeOptionals: false,
       });
-      updateInfo(req.session.user.email, data).then(() => {
-        res.redirect("/settings");
-      }).catch(error => {
-        console.error(error);
-        res.render("settings", { user: req.session.user, error: "Something went wrong, try again" });
-      });
+      updateInfo(req.session.user.email, data)
+        .then(() => {
+          res.redirect("/settings");
+        })
+        .catch((error) => {
+          console.error(error);
+          res.render("settings", {
+            user: req.session.user,
+            error: "Something went wrong, try again",
+          });
+        });
     }
-  }
+  },
 };
