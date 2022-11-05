@@ -16,13 +16,15 @@ const router = express.Router();
 router.get("/", verifyLogin, getHome);
 
 router.get("/login", verifyGuest, (req, res) => {
-  res.render("login");
+  res.render("login", { error: req.session.loginErr });
+  req.session.loginErr = "";
 });
 
 router.post("/login", loginValidation, postLogin);
 
 router.get("/signup", verifyGuest, (req, res) => {
-  res.render("signup");
+  res.render("signup", { error: req.session.signupErr });
+  req.session.signupErr = "";
 });
 
 router.post("/signup", signupValidation, postSignup);
@@ -37,7 +39,11 @@ router.get("/profile", verifyLogin, (req, res) => {
 });
 
 router.get("/settings", verifyLogin, (req, res) => {
-  res.render("settings", { user: req.session.user });
+  res.render("settings", {
+    user: req.session.user,
+    error: req.session.updateErr,
+  });
+  req.session.updateErr = "";
 });
 
 router.post("/settings", signupValidation, postSettings);

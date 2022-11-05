@@ -24,8 +24,10 @@ module.exports = {
 
   postLogin: (req, res) => {
     const err = validationResult(req).array();
-    if (err.length > 0) res.render("login", { error: err[0].msg });
-    else {
+    if (err.length > 0) {
+      req.session.loginErr = err[0].msg;
+      res.redirect("/login");
+    } else {
       const data = matchedData(req, {
         onlyValidData: true,
         includeOptionals: false,
@@ -40,19 +42,23 @@ module.exports = {
             response.user.admin = response.admin;
             req.session.user = response.user;
             res.redirect("/");
-          } else res.render("login", { error: response.message });
+            req.session.loginErr = response.message;
+          } else res.redirect("/login");
         })
         .catch((error) => {
           console.error(error);
-          res.render("login", { error: "Something went wrong, try again" });
+          req.session.loginErr = "Something went wrong, try again";
+          res.redirect("/login");
         });
     }
   },
 
   postSignup: (req, res) => {
     const err = validationResult(req).array();
-    if (err.length > 0) res.render("signup", { error: err[0].msg });
-    else {
+    if (err.length > 0) {
+      req.session.signupErr = err[0].msg;
+      res.redirect("/signup");
+    } else {
       const data = matchedData(req, {
         onlyValidData: true,
         includeOptionals: false,
@@ -68,11 +74,13 @@ module.exports = {
             req.session.id = data.email;
             req.session.user = data;
             res.redirect(303, "/");
-          } else res.render("signup", { error: response.message });
+            req.session.signupErr = response.message;
+          } else res.redirect("/signup");
         })
         .catch((error) => {
           console.error(error);
-          res.render("signup", { error: "Something went wrong, try again" });
+          req.session.signupErr = "Something went wrong, try again";
+          res.redirect("/signup");
         });
     }
   },
@@ -82,9 +90,10 @@ module.exports = {
     err = err.filter(
       (ele) => !["email", "password", "confirmPassword"].includes(ele.param)
     );
-    if (err.length > 0)
-      res.render("settings", { user: req.session.user, error: err[0].msg });
-    else {
+    if (err.length > 0) {
+      req.session.updateErr = err[0].msg;
+      res.redirect("/settings");
+    } else {
       const data = matchedData(req, {
         onlyValidData: true,
         includeOptionals: false,
@@ -95,10 +104,8 @@ module.exports = {
         })
         .catch((error) => {
           console.error(error);
-          res.render("settings", {
-            user: req.session.user,
-            error: "Something went wrong, try again",
-          });
+          req.session.updateErr = "Something went wrong, try again";
+          res.redirect("/settings");
         });
     }
   },
