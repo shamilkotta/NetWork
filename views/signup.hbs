@@ -7,7 +7,15 @@
           style="border-radius: 15px;"
         >
           <div class="card-body p-4 p-md-5">
-            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+            <div class="d-flex align-items-center mb-3 pb-1">
+              <span class="h1 fw-bold mb-0"><span
+                  class="text-primary"
+                >Net</span>Work</span>
+            </div>
+            <h5
+              class="fw-normal mb-3 mt-0 pb-3"
+              style="letter-spacing: 1px;"
+            >Create a account</h5>
             <form method="post" action="/signup">
               <div class="row">
                 <div class="col-md-6 mb-4">
@@ -107,13 +115,15 @@
                 </div>
               </div>
               <p class="error-message text-danger">{{error}}</p>
-              <div class="mt-4 pt-2">
-                <input
-                  class="btn btn-primary btn-lg"
+              <div class="pt-2 mb-4">
+                <button
+                  class="btn btn-dark btn-lg btn-block"
                   type="submit"
-                  value="Submit"
-                />
+                >Submit</button>
               </div>
+              <p class="" style="color: #393f81;">Already have an account?
+                <a href="/login" style="color: #393f81;" class="fw-bold">Login
+                  here</a></p>
             </form>
           </div>
         </div>
