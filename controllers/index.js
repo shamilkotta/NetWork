@@ -34,6 +34,7 @@ module.exports = {
             req.session.admin = response.admin;
             req.session.id = data.email;
             delete response.user.password;
+            response.user.admin = response.admin;
             req.session.user = response.user;
             res.redirect("/");
           } else res.render("login", { error: response.message });
@@ -57,6 +58,7 @@ module.exports = {
         .then((response) => {
           delete data.password;
           delete data.confirmPassword;
+          data.admin = false;
           if (response.success) {
             req.session.logedIn = true;
             req.session.admin = false;
