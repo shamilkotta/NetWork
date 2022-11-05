@@ -76,4 +76,14 @@ module.exports = {
         })
         .catch((err) => reject(err));
     }),
+
+  getAllUsers: () =>
+    new Promise((resolve, reject) => {
+      getDb
+        .collection(USERS_COLLECTION)
+        .find({})
+        .toArray()
+        .then((res) => resolve(res))
+        .catch((err) => reject(err));
+    }),
 };
