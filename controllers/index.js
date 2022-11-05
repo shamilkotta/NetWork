@@ -9,6 +9,7 @@ module.exports = {
         .then((users) => {
           res.render("home", {
             users,
+            user: req.session.user,
             helpers: {
               avatar: (name) => name.split("")[0],
             },
