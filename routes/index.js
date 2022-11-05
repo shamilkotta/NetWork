@@ -7,11 +7,13 @@ const {
   postLogin,
   postSignup,
   postSettings,
+  getUser,
 } = require("../controllers");
+const { verifyLogin } = require("../middlewares/authorization");
 
 const router = express.Router();
 
-router.get("/", getHome);
+router.get("/", verifyLogin, getHome);
 
 router.get("/login", (req, res) => {
   if (req.session.logedIn) res.redirect("/");
@@ -32,16 +34,16 @@ router.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
-router.get("/profile", (req, res) => {
-  if (req.session.logedIn) res.render("profile", { user: req.session.user });
-  else res.redirect("/login");
+router.get("/profile", verifyLogin, (req, res) => {
+  res.render("profile", { user: req.session.user });
 });
 
-router.get("/settings", (req, res) => {
-  if (req.session.logedIn) res.render("settings", { user: req.session.user });
-  else res.redirect("/login");
+router.get("/settings", verifyLogin, (req, res) => {
+  res.render("settings", { user: req.session.user });
 });
 
 router.post("/settings", signupValidation, postSettings);
+
+router.get("/user/:id", getUser);
 
 module.exports = router;

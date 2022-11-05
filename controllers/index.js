@@ -9,19 +9,17 @@ const {
 
 module.exports = {
   getHome: (req, res) => {
-    if (req.session.logedIn) {
-      getAllUsers()
-        .then((users) => {
-          res.render("home", {
-            users,
-            user: req.session.user,
-          });
-        })
-        .catch((err) => {
-          console.error(err);
-          res.render("home", { users: [] });
+    getAllUsers()
+      .then((users) => {
+        res.render("home", {
+          users,
+          user: req.session.user,
         });
-    } else res.redirect("/login");
+      })
+      .catch((err) => {
+        console.error(err);
+        res.render("home", { users: [] });
+      });
   },
 
   postLogin: (req, res) => {
@@ -103,5 +101,9 @@ module.exports = {
           });
         });
     }
+  },
+
+  getUser: () => {
+    // const { id } = req.params;
   },
 };
