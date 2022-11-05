@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const { engine } = require("express-handlebars");
+const session = require("express-session");
 require("dotenv").config();
 
 const ErrorResponse = require("./utils/ErrorResponse");
@@ -38,6 +39,18 @@ connectDb()
   .catch((err) => {
     console.log(`error ${err}`);
   });
+
+// set session
+app.use(
+  session({
+    secret: process.env.SESSION_KEY || "key",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: false,
+    },
+  })
+);
 
 // routes
 app.use("/", indexRouter);
