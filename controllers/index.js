@@ -35,6 +35,8 @@ module.exports = {
             req.session.logedIn = true;
             req.session.admin = response.admin;
             req.session.id = data.email;
+            delete response.user.password;
+            req.session.user = response.user;
             res.redirect("/");
           } else res.render("login", { error: response.message });
         })
@@ -55,10 +57,13 @@ module.exports = {
       });
       signupHelper(data)
         .then((response) => {
+          delete data.password;
+          delete data.confirmPassword;
           if (response.success) {
             req.session.logedIn = true;
             req.session.admin = false;
             req.session.id = data.email;
+            req.session.user = data;
             res.redirect(303, "/");
           } else res.render("signup", { error: response.message });
         })
