@@ -64,7 +64,7 @@ module.exports = {
               .compare(password, user.password)
               .then((res) => {
                 if (res)
-                  resolve({ success: true, admin: user?.admin || false });
+                  resolve({ success: true, admin: user?.admin || false, user });
                 else
                   resolve({
                     success: false,
