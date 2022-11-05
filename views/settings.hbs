@@ -1,0 +1,89 @@
+<section class="vh-100 gradient-custom">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div
+          class="card shadow-2-strong card-registration"
+          style="border-radius: 15px;"
+        >
+          <div class="card-body p-4 p-md-5">
+            <h5
+              class="fw-normal mb-3 mt-0 pb-3"
+              style="letter-spacing: 1px;"
+            >Update info</h5>
+            <form method="post" action="/signup">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      class="form-control form-control-lg"
+                      value="{{user.name}}"
+                      required
+                    />
+                    <label class="form-label" for="name">Full Name</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <input
+                      type="url"
+                      name="social"
+                      id="social"
+                      pattern="https://.*"
+                      size="30"
+                      class="form-control form-control-lg"
+                      value="{{user.social}}"
+                      required
+                    />
+                    <label class="form-label" for="social">Social Media URL</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="mb-4 d-flex align-items-center">
+                  <div class="form-outline datepicker w-100">
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="tag"
+                      name="tag"
+                      maxlength="75"
+                      value="{{user.tag}}"
+                      required
+                    />
+                    <label for="tag" class="form-label">Tag line</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 mb-4 pb-2">
+                  <div class="form-outline">
+                    <textarea
+                      class="form-control"
+                      id="bio"
+                      name="bio"
+                      rows="4"
+                      minlength="150"
+                      required
+                    >{{user.bio}}</textarea>
+                    <label class="form-label" for="bio">Bio</label>
+                  </div>
+                </div>
+              </div>
+              <p class="error-message text-danger">{{error}}</p>
+              <div class="pt-2 mb-4">
+                <button
+                  class="btn btn-dark btn-lg btn-block"
+                  type="submit"
+                >Update</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
