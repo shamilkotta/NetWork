@@ -2,12 +2,14 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const { engine } = require("express-handlebars");
-const { connectDb } = require("./config/db");
 require("dotenv").config();
 
+const ErrorResponse = require("./utils/ErrorResponse");
+const { connectDb } = require("./config/db");
 const errorHandler = require("./middlewares/errorHandler");
 const indexRouter = require("./routes");
 const adminRouter = require("./routes/admin");
+const userSchema = require("./models/userSchema");
 
 const app = express();
 
@@ -29,6 +31,7 @@ app.use("/static", express.static(`${__dirname}/public`));
 
 // connect db
 connectDb()
+  .then(() => Promise.all([userSchema]))
   .then(() => {
     console.log(`Database connected`);
   })
@@ -42,7 +45,7 @@ app.use("/admin", adminRouter);
 
 // 404
 app.use((req, res, next) => {
-  next(new Error("Not found"));
+  next(new ErrorResponse(404));
 });
 
 // error handler
