@@ -28,7 +28,8 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/profile", (req, res) => {
-  res.render("profile");
+  if (req.session.logedIn) res.render("profile", { user: req.session.user });
+  else res.redirect("/login");
 });
 
 module.exports = router;
