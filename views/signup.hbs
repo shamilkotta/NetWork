@@ -43,6 +43,8 @@
                       class="form-control form-control-lg"
                       id="tag"
                       name="tag"
+                      maxlength="75"
+                      required
                     />
                     <label for="tag" class="form-label">Tag line</label>
                   </div>
@@ -70,6 +72,8 @@
                       id="bio"
                       name="bio"
                       rows="4"
+                      minlength="150"
+                      required
                     ></textarea>
                     <label class="form-label" for="bio">Bio</label>
                   </div>
@@ -92,12 +96,12 @@
                   <div class="form-outline">
                     <input
                       type="password"
-                      name="confirm-password"
-                      id="confirm-password"
+                      name="confirmPassword"
+                      id="confirmPassword"
                       class="form-control form-control-lg"
                       required
                     />
-                    <label class="form-label" for="confirm-password">Confirm
+                    <label class="form-label" for="confirmPassword">Confirm
                       Password</label>
                   </div>
                 </div>
