@@ -29,7 +29,7 @@ module.exports = {
                     tag,
                     social,
                     bio,
-                    newPass,
+                    password: newPass,
                   })
                   .then(() => {
                     resolve({
