@@ -25,7 +25,16 @@ app.use(cookieParser());
 // view engine setup
 app.set("views", "./views");
 app.set("view engine", "hbs");
-app.engine("hbs", engine({ extname: ".hbs", defaultLayout: "index" }));
+app.engine(
+  "hbs",
+  engine({
+    extname: ".hbs",
+    defaultLayout: "index",
+    helpers: {
+      avatar: (name) => name.split("")[0],
+    },
+  })
+);
 
 // static
 app.use("/static", express.static(`${__dirname}/public`));

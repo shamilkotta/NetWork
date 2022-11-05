@@ -10,9 +10,6 @@ module.exports = {
           res.render("home", {
             users,
             user: req.session.user,
-            helpers: {
-              avatar: (name) => name.split("")[0],
-            },
           });
         })
         .catch((err) => {
