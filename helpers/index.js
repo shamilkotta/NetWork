@@ -63,7 +63,8 @@ module.exports = {
             bcrypt
               .compare(password, user.password)
               .then((res) => {
-                if (res) resolve({ success: true });
+                if (res)
+                  resolve({ success: true, admin: user?.admin || false });
                 else
                   resolve({
                     success: false,

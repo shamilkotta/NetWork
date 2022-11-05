@@ -8,11 +8,13 @@ const { signupHelper, loginHelper } = require("../helpers");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.render("home");
+  if (req.session.logedIn) res.render("home");
+  else res.redirect("/login");
 });
 
 router.get("/login", (req, res) => {
-  res.render("login");
+  if (req.session.logedIn) res.redirect("/");
+  else res.render("login");
 });
 
 router.post("/login", loginValidation, (req, res) => {
@@ -25,8 +27,12 @@ router.post("/login", loginValidation, (req, res) => {
     });
     loginHelper(data)
       .then((response) => {
-        if (response.success) res.redirect("/");
-        else res.render("login", { error: response.message });
+        if (response.success) {
+          req.session.logedIn = true;
+          req.session.admin = response.admin;
+          req.session.id = data.email;
+          res.redirect("/");
+        } else res.render("login", { error: response.message });
       })
       .catch((error) => {
         console.error(error);
@@ -36,7 +42,8 @@ router.post("/login", loginValidation, (req, res) => {
 });
 
 router.get("/signup", (req, res) => {
-  res.render("signup");
+  if (req.session.logedIn) res.redirect("/");
+  else res.render("signup");
 });
 
 router.post("/signup", signupValidation, (req, res) => {
@@ -49,8 +56,12 @@ router.post("/signup", signupValidation, (req, res) => {
     });
     signupHelper(data)
       .then((response) => {
-        if (response.success) res.redirect(303, "/");
-        else res.render("signup", { error: response.message });
+        if (response.success) {
+          req.session.logedIn = true;
+          req.session.admin = false;
+          req.session.id = data.email;
+          res.redirect(303, "/");
+        } else res.render("signup", { error: response.message });
       })
       .catch((error) => {
         console.error(error);
