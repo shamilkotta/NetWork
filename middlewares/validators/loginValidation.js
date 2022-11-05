@@ -11,14 +11,6 @@ const lgoinSchema = {
   password: {
     trim: true,
     notEmpty: true,
-    isStrongPassword: {
-      errorMessage:
-        "Password must contain at least one uppercase, one lowercase, one number, and one special character",
-    },
-    isLength: {
-      errorMessage: "Password can only be up to 16 characters long",
-      options: { max: 16 },
-    },
     custom: {
       errorMessage: "Password cannot contain whitespaces",
       options: (value) => !/\s/g.test(value),
