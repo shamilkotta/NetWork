@@ -9,22 +9,20 @@ const {
   postSettings,
   getUser,
 } = require("../controllers");
-const { verifyLogin } = require("../middlewares/authorization");
+const { verifyLogin, verifyGuest } = require("../middlewares/authorization");
 
 const router = express.Router();
 
 router.get("/", verifyLogin, getHome);
 
-router.get("/login", (req, res) => {
-  if (req.session.logedIn) res.redirect("/");
-  else res.render("login");
+router.get("/login", verifyGuest, (req, res) => {
+  res.render("login");
 });
 
 router.post("/login", loginValidation, postLogin);
 
-router.get("/signup", (req, res) => {
-  if (req.session.logedIn) res.redirect("/");
-  else res.render("signup");
+router.get("/signup", verifyGuest, (req, res) => {
+  res.render("signup");
 });
 
 router.post("/signup", signupValidation, postSignup);
