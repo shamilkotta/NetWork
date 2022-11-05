@@ -47,4 +47,32 @@ module.exports = {
           reject(err);
         });
     }),
+
+  loginHelper: ({ email, password }) =>
+    new Promise((resolve, reject) => {
+      getDb
+        .collection(USERS_COLLECTION)
+        .findOne({ email })
+        .then((user) => {
+          if (!user)
+            resolve({
+              success: false,
+              message: "Invalid users, Please create an account",
+            });
+          else {
+            bcrypt
+              .compare(password, user.password)
+              .then((res) => {
+                if (res) resolve({ success: true });
+                else
+                  resolve({
+                    success: false,
+                    message: "Invalid email or password",
+                  });
+              })
+              .catch((err) => reject(err));
+          }
+        })
+        .catch((err) => reject(err));
+    }),
 };
