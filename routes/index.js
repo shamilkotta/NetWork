@@ -32,4 +32,9 @@ router.get("/profile", (req, res) => {
   else res.redirect("/login");
 });
 
+router.get("/settings", (req, res) => {
+  if (req.session.logedIn) res.render("settings", { user: req.session.user });
+  else res.redirect("/login");
+});
+
 module.exports = router;
