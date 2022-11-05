@@ -2,6 +2,7 @@ const express = require("express");
 const { validationResult, matchedData } = require("express-validator");
 
 const signupValidation = require("../middlewares/validators/signupValidation");
+const { signupHelper } = require("../helpers");
 
 const router = express.Router();
 
@@ -25,8 +26,15 @@ router.post("/signup", signupValidation, (req, res) => {
       onlyValidData: true,
       includeOptionals: false,
     });
-    console.log(data);
-    res.redirect("/");
+    signupHelper(data)
+      .then((response) => {
+        if (response.success) res.redirect("/");
+        else res.render("signup", { error: response.message });
+      })
+      .catch((error) => {
+        console.error(error);
+        res.render("signup", { error: "Something went wrong, try again" });
+      });
   }
 });
 
