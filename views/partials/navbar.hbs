@@ -14,46 +14,57 @@
     <div class="d-flex align-items-center">
       <ul class="navbar-nav me-4 my-auto fs-6">
         <li class="nav-item">
-          {{#if admin}}
-            <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+          {{#if user}}
+            {{#if user.admin}}
+              <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+            {{else}}
+              <a class="nav-link" href="/">Home</a>
+            {{/if}}
           {{else}}
-            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/signup">Signup</a>
           {{/if}}
         </li>
       </ul>
+
       <!-- Avatar -->
-      <div class="dropdown">
-        <a
-          class="dropdown-toggle d-flex align-items-center hidden-arrow"
-          href="#"
-          id="navbarDropdownMenuAvatar"
-          role="button"
-          data-mdb-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <img
-            src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-            class="rounded-circle"
-            height="40"
-            alt="Black and White Portrait of a Man"
-            loading="lazy"
-          />
-        </a>
-        <ul
-          class="dropdown-menu dropdown-menu-end"
-          aria-labelledby="navbarDropdownMenuAvatar"
-        >
-          <li>
-            <a class="dropdown-item" href="#">My profile</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Settings</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="/logout">Logout</a>
-          </li>
-        </ul>
-      </div>
+      {{#if user}}
+        <div class="dropdown">
+          <a
+            class="dropdown-toggle d-flex align-items-center hidden-arrow"
+            href="#"
+            id="navbarDropdownMenuAvatar"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <div
+              class="rounded-circle d-flex align-items-center justify-content-center bg-secondary"
+              style="width: 40px; height: 40px;"
+            >
+              <h1
+                class="text-black text-center align-middle m-0 p-0"
+                style="font-size: 30px;"
+              >{{avatar user.name}}</h1>
+            </div>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdownMenuAvatar"
+          >
+            <li>
+              <a class="dropdown-item" href="#">My profile</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Settings</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      {{else}}
+        <a class="nav-link" href="/login">Login</a>
+      {{/if}}
     </div>
     <!-- Right elements -->
   </div>
