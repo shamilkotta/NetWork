@@ -22,6 +22,11 @@ router.get("/signup", (req, res) => {
 
 router.post("/signup", signupValidation, postSignup);
 
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/login");
+});
+
 router.get("/profile", (req, res) => {
   res.render("profile");
 });
