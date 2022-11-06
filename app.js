@@ -11,6 +11,7 @@ const errorHandler = require("./middlewares/errorHandler");
 const indexRouter = require("./routes");
 const adminRouter = require("./routes/admin");
 const userSchema = require("./models/userSchema");
+const { verifyAdmin } = require("./middlewares/authorization");
 
 const app = express();
 
@@ -72,7 +73,7 @@ app.use((req, res, next) => {
 
 // routes
 app.use("/", indexRouter);
-app.use("/admin", adminRouter);
+app.use("/admin", verifyAdmin, adminRouter);
 
 // 404
 app.use((req, res, next) => {
