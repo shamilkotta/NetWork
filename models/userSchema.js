@@ -42,6 +42,10 @@ module.exports =
                   bsonType: "string",
                   description: "password is required",
                 },
+                status: {
+                  bsonType: "bool",
+                  default: true,
+                },
               },
             },
           },
