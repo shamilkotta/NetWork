@@ -53,7 +53,7 @@ router.post("/update-info", verifyLogin, signupValidation, postInfo);
 router.get("/user/:id", verifyLogin, getUser);
 
 router.get("/404", (req, res) => {
-  res.render("404");
+  res.render("404", { user: req.session.user });
 });
 
 module.exports = router;
