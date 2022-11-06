@@ -42,8 +42,10 @@ module.exports = {
             response.user.admin = response.admin;
             req.session.user = response.user;
             res.redirect("/");
+          } else {
             req.session.loginErr = response.message;
-          } else res.redirect("/login");
+            res.redirect("/login");
+          }
         })
         .catch((error) => {
           console.error(error);
