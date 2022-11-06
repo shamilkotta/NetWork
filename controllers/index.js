@@ -2,16 +2,16 @@ const { validationResult, matchedData } = require("express-validator");
 const { ObjectId } = require("mongodb");
 
 const {
-  getAllUsers,
   loginHelper,
   signupHelper,
   updateInfo,
   getUserById,
+  getActiveUsers,
 } = require("../helpers");
 
 module.exports = {
   getHome: (req, res) => {
-    getAllUsers()
+    getActiveUsers()
       .then((users) => {
         res.render("home", {
           users,
