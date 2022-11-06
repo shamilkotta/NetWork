@@ -87,7 +87,7 @@ module.exports = {
     }
   },
 
-  postSettings: (req, res) => {
+  postInfo: (req, res) => {
     let err = validationResult(req).array();
     err = err.filter(
       (ele) => !["email", "password", "confirmPassword"].includes(ele.param)

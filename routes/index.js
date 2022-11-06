@@ -6,8 +6,8 @@ const {
   getHome,
   postLogin,
   postSignup,
-  postSettings,
   getUser,
+  postInfo,
 } = require("../controllers");
 const { verifyLogin, verifyGuest } = require("../middlewares/authorization");
 
@@ -46,7 +46,7 @@ router.get("/settings", verifyLogin, (req, res) => {
   req.session.updateErr = "";
 });
 
-router.post("/settings", signupValidation, postSettings);
+router.post("/update-info", signupValidation, postInfo);
 
 router.get("/user/:id", getUser);
 
