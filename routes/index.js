@@ -50,6 +50,6 @@ router.get("/settings", verifyLogin, (req, res) => {
 
 router.post("/update-info", verifyLogin, signupValidation, postInfo);
 
-router.get("/user/:id", getUser);
+router.get("/user/:id", verifyLogin, getUser);
 
 module.exports = router;
