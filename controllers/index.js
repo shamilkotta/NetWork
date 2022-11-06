@@ -89,6 +89,23 @@ module.exports = {
     }
   },
 
+  getSettings: (req, res, next) => {
+    const { _id } = req.session.user;
+    getUserById(ObjectId(_id))
+      .then((response) => {
+        if (response.success) {
+          res.render("settings", {
+            user: response.user,
+            error: req.session.updateErr,
+            success: req.session.updateSucc,
+          });
+          req.session.updateErr = "";
+          req.session.updateSucc = "";
+        } else res.redirect("/profile");
+      })
+      .catch((err) => next(err));
+  },
+
   postInfo: (req, res) => {
     let err = validationResult(req).array();
     err = err.filter(
