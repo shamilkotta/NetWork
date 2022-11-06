@@ -1,6 +1,6 @@
 const { checkSchema } = require("express-validator");
 
-const lgoinSchema = {
+const loginSchema = {
   email: {
     trim: true,
     notEmpty: true,
@@ -19,4 +19,4 @@ const lgoinSchema = {
   },
 };
 
-module.exports = checkSchema(lgoinSchema);
+module.exports = checkSchema(loginSchema);
