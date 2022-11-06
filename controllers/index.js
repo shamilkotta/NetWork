@@ -1,10 +1,12 @@
 const { validationResult, matchedData } = require("express-validator");
+const { ObjectId } = require("mongodb");
 
 const {
   getAllUsers,
   loginHelper,
   signupHelper,
   updateInfo,
+  getUserById,
 } = require("../helpers");
 
 module.exports = {
@@ -113,7 +115,15 @@ module.exports = {
     }
   },
 
-  getUser: () => {
-    // const { id } = req.params;
+  getUser: (req, res) => {
+    const { id } = req.params;
+    if (ObjectId.isValid(id) && ObjectId(id).toString() === id) {
+      getUserById(ObjectId(id))
+        .then((response) => {
+          if (response.success) res.render("profile", { user: response.user });
+          else res.redirect("/");
+        })
+        .catch(() => res.redirect("/"));
+    } else res.redirect("/");
   },
 };

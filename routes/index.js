@@ -48,7 +48,7 @@ router.get("/settings", verifyLogin, (req, res) => {
   req.session.updateSucc = "";
 });
 
-router.post("/update-info", signupValidation, postInfo);
+router.post("/update-info", verifyLogin, signupValidation, postInfo);
 
 router.get("/user/:id", getUser);
 
