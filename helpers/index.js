@@ -92,9 +92,20 @@ module.exports = {
       getDb
         .collection(USERS_COLLECTION)
         .findOneAndUpdate({ email: user }, { $set: data })
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           resolve({ success: true });
+        })
+        .catch((err) => reject(err));
+    }),
+
+  getUserById: (id) =>
+    new Promise((resolve, reject) => {
+      getDb
+        .collection(USERS_COLLECTION)
+        .findOne({ _id: id }, { projection: { password: 0 } })
+        .then((res) => {
+          if (res) resolve({ success: true, user: res });
+          else resolve({ success: false });
         })
         .catch((err) => reject(err));
     }),
