@@ -1,6 +1,14 @@
+/* eslint-disable prefer-const */
 // eslint-disable-next-line no-unused-vars
 module.exports = (err, req, res, next) => {
-  let statusCode = 500;
-  if (err.message === "Not found") statusCode = 404;
-  res.status(statusCode).render("404");
+  let { statusCode = 500, message = "Somthing went wrong" } = err;
+
+  if (statusCode === 404) {
+    message = "Not found";
+    res.redirect("/404");
+  }
+  if (statusCode === 401) {
+    message = "Unauthorized";
+  }
+  res.status(statusCode).json({ success: false, statusCode, message });
 };
