@@ -50,7 +50,8 @@
               <button
                 type="button"
                 class="btn btn-link btn-sm"
-                data-mdb-toggle="modal" data-mdb-target="#exampleModal"
+                data-mdb-toggle="modal"
+                data-mdb-target="#exampleModal"
                 onclick="viewClicked('{{this.tag}}','{{this.bio}}')"
               >
                 View
@@ -84,12 +85,23 @@
   </div>
 </section>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">User Bio</h5>
-        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <h5>Tag line</h5>
