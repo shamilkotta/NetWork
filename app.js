@@ -31,7 +31,7 @@ app.engine(
     extname: ".hbs",
     defaultLayout: "index",
     helpers: {
-      avatar: (name) => name.split("")[0],
+      avatar: (name) => name.split("")[0].toUpperCase(),
     },
   })
 );
