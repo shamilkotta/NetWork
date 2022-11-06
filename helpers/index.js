@@ -6,7 +6,7 @@ const { getDb } = require("../config/db");
 module.exports = {
   signupHelper: (data) =>
     new Promise((resolve, reject) => {
-      const { name, email, tag, social, bio, password } = data;
+      const { name, email, tag, social, bio, password, status } = data;
       getDb
         .collection(USERS_COLLECTION)
         .findOne({ email })
@@ -30,6 +30,7 @@ module.exports = {
                     social,
                     bio,
                     password: newPass,
+                    status,
                   })
                   .then(() => {
                     resolve({

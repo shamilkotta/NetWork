@@ -67,6 +67,7 @@ module.exports = {
         onlyValidData: true,
         includeOptionals: false,
       });
+      data.status = true;
       signupHelper(data)
         .then((response) => {
           delete data.password;
