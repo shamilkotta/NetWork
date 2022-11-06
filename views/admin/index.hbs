@@ -49,19 +49,24 @@
             <td>Senior</td>
             <td>
 
-              <button
+              <a
                 type="button"
                 class="btn btn-link btn-outline-primary btn-sm"
+                href="/admin/status/{{this._id}}?cStatus={{this.status}}"
               >
                 {{#if this.status}}
                   Block
                 {{else}}
                   Unblock
                 {{/if}}
-              </button>
-              <button type="button" class="btn btn btn-danger btn-sm">
+              </a>
+              <a
+                type="button"
+                class="btn btn btn-danger btn-sm"
+                href="/admin/delete/{{this._id}}"
+              >
                 Delete
-              </button>
+              </a>
             </td>
           </tr>
         {{/each}}
