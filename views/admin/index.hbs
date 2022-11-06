@@ -1,0 +1,71 @@
+<section class="d-flex flex-column align-self-center px-2 px-sm-3 px-md-5 py-5">
+  <h2>All Users</h2>
+  <hr />
+  <div class="table-responsive mt-3" style="max-width: 1400px;">
+    <table class="table align-middle mb-0 bg-white">
+      <thead class="bg-light">
+        <tr>
+          <th>Name</th>
+          <th>Connection</th>
+          <th>Status</th>
+          <th>Position</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each users}}
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <div
+                  class="rounded-circle d-flex align-items-center justify-content-center"
+                  style="width: 40px; height: 40px; background-color:rgb(223, 223, 223);"
+                >
+                  <h1
+                    class="text-primary text-center align-middle m-0 p-0"
+                    style="font-size: 20px;"
+                  >{{avatar this.name}}</h1>
+                </div>
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">{{this.name}}</p>
+                  <p class="text-muted mb-0">{{this.email}}</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <p class="fw-normal mb-1">{{this.social}}</p>
+            </td>
+            <td>
+              {{#if this.status}}
+                <span
+                  class="badge badge-success rounded-pill d-inline"
+                >Active</span>
+              {{else}}
+                <span
+                  class="badge badge-warning rounded-pill d-inline"
+                >Inactive</span>
+              {{/if}}
+            </td>
+            <td>Senior</td>
+            <td>
+
+              <button
+                type="button"
+                class="btn btn-link btn-outline-primary btn-sm"
+              >
+                {{#if this.status}}
+                  Block
+                {{else}}
+                  Unblock
+                {{/if}}
+              </button>
+              <button type="button" class="btn btn btn-danger btn-sm">
+                Delete
+              </button>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>
