@@ -102,6 +102,7 @@ module.exports = {
       });
       updateInfo(req.session.user.email, data)
         .then(() => {
+          req.session.updateSucc = "Updated successfully";
           res.redirect("/settings");
         })
         .catch((error) => {

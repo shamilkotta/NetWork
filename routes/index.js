@@ -42,8 +42,10 @@ router.get("/settings", verifyLogin, (req, res) => {
   res.render("settings", {
     user: req.session.user,
     error: req.session.updateErr,
+    success: req.session.updateSucc,
   });
   req.session.updateErr = "";
+  req.session.updateSucc = "";
 });
 
 router.post("/update-info", signupValidation, postInfo);
