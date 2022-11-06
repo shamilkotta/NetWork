@@ -1,9 +1,11 @@
 const express = require("express");
 
-const { getDashBoard } = require("../controllers/admin");
+const { getDashBoard, getStatusUpdate } = require("../controllers/admin");
 
 const router = express.Router();
 
 router.get("/", getDashBoard);
+
+router.get("/status/:id", getStatusUpdate);
 
 module.exports = router;

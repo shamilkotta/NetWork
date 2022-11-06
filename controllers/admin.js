@@ -1,4 +1,5 @@
-const { getAllUsers } = require("../helpers");
+const { ObjectId } = require("mongodb");
+const { getAllUsers, updateStatus } = require("../helpers/admin");
 
 module.exports = {
   getDashBoard: (req, res) => {
@@ -13,5 +14,18 @@ module.exports = {
         console.error(err);
         res.render("admin/index", { users: [], user: req.session.user });
       });
+  },
+
+  getStatusUpdate: (req, res) => {
+    const { id } = req.params;
+    const { cStatus } = req.query;
+    const status = cStatus === "true";
+    if (ObjectId.isValid(id) && ObjectId(id).toString() === id) {
+      updateStatus(ObjectId(id), !status)
+        .then(() => {
+          res.redirect("/admin");
+        })
+        .catch(() => res.redirect("/admin"));
+    } else res.redirect("/admin");
   },
 };
