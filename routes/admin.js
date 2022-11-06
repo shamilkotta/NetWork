@@ -1,21 +1,9 @@
 const express = require("express");
 
-const { getAllUsers } = require("../helpers/index");
+const { getDashBoard } = require("../controllers/admin");
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  getAllUsers()
-    .then((users) => {
-      res.render("admin/index", {
-        users,
-        user: req.session.user,
-      });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.render("admin/index", { users: [], user: req.session.user });
-    });
-});
+router.get("/", getDashBoard);
 
 module.exports = router;
