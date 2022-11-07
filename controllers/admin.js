@@ -1,4 +1,7 @@
 const { ObjectId } = require("mongodb");
+const { validationResult, matchedData } = require("express-validator");
+
+const { signupHelper } = require("../helpers");
 const { getAllUsers, updateStatus, deleteUser } = require("../helpers/admin");
 
 module.exports = {
@@ -38,5 +41,34 @@ module.exports = {
         })
         .catch(() => res.redirect("/admin"));
     } else res.redirect("/admin");
+  },
+
+  postNewUser: (req, res) => {
+    const err = validationResult(req).array();
+    if (err.length > 0) {
+      req.session.newUserErr = err[0].msg;
+      res.redirect("/admin/add-user");
+    } else {
+      const data = matchedData(req, {
+        onlyValidData: true,
+        includeOptionals: false,
+      });
+      data.status = true;
+      signupHelper(data)
+        .then((response) => {
+          if (response.success) {
+            req.session.newUserSucc = "New user created";
+            res.redirect(303, "/admin/add-user");
+          } else {
+            req.session.newUserErr = response.message;
+            res.redirect("/admin/add-user");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          req.session.newUserErr = "Something went wrong, try again";
+          res.redirect("/add-user");
+        });
+    }
   },
 };
