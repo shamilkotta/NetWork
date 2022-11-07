@@ -79,8 +79,10 @@ module.exports = {
             req.session.id = data.email;
             req.session.user = data;
             res.redirect(303, "/");
+          } else {
             req.session.signupErr = response.message;
-          } else res.redirect("/signup");
+            res.redirect("/signup");
+          }
         })
         .catch((error) => {
           console.error(error);
