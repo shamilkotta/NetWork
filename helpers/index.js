@@ -14,7 +14,7 @@ module.exports = {
           if (user)
             resolve({
               success: false,
-              message: "User already exist, try login",
+              message: "User already exists",
             });
           else {
             const salt = Number(process.env.SALT) || 10;
