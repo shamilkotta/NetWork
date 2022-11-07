@@ -140,7 +140,11 @@ module.exports = {
     if (ObjectId.isValid(id) && ObjectId(id).toString() === id) {
       getUserById(ObjectId(id))
         .then((response) => {
-          if (response.success) res.render("profile", { user: response.user });
+          if (response.success)
+            res.render("profile", {
+              user: req.session.user,
+              fuser: response.user,
+            });
           else res.redirect("/");
         })
         .catch(() => res.redirect("/"));

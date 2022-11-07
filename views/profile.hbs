@@ -7,7 +7,7 @@
           style="min-height: 100px; background-color:rgb(223, 223, 223); cursor: default"
         >
           <h1 style="font-size: 50px;">
-            {{avatar user.name}}
+            {{avatar fuser.name}}
           </h1>
         </div>
         <div class="col-md-9">
@@ -15,21 +15,21 @@
 
             <div class="d-flex justify-content-between align-items-center mb-2">
               <div>
-                {{#if user.status}}
+                {{#if fuser.status}}
                   <span class="badge badge-success rounded-pill">Active</span>
                 {{else}}
                   <span class="badge badge-warning rounded-pill">Inactive</span>
                 {{/if}}
-                <h3 class="card-title my-auto">{{user.name}}</h3>
+                <h3 class="card-title my-auto">{{fuser.name}}</h3>
               </div>
               <a
-                href="{{user.social}}"
+                href="{{fuser.social}}"
                 class="btn btn-outline-primary"
                 target="_blank"
               >connect</a>
             </div>
             <p class="card-text">
-              {{user.bio}}
+              {{fuser.bio}}
             </p>
           </div>
         </div>

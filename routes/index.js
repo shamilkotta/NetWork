@@ -36,7 +36,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/profile", verifyLogin, (req, res) => {
-  res.render("profile", { user: req.session.user });
+  res.render("profile", { user: req.session.user, fuser: req.session.user });
 });
 
 router.get("/settings", verifyLogin, getSettings);
