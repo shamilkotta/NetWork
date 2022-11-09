@@ -32,8 +32,10 @@ module.exports = {
                     password: newPass,
                     status,
                   })
-                  .then(() => {
+                  .then((res) => {
+                    console.log(res);
                     resolve({
+                      id: res.insertedId,
                       success: true,
                       message: "User created successfully",
                     });

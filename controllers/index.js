@@ -74,6 +74,8 @@ module.exports = {
           delete data.confirmPassword;
           data.admin = false;
           if (response.success) {
+            // eslint-disable-next-line no-underscore-dangle
+            data._id = response.id;
             req.session.logedIn = true;
             req.session.admin = false;
             req.session.id = data.email;
